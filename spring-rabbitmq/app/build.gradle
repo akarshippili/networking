@@ -9,7 +9,13 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'java'
+    id 'org.springframework.boot' version '2.7.3'
+    id 'io.spring.dependency-management' version '1.0.13.RELEASE'
 }
+
+group = 'com.akarsh.spring.rabbitmq'
+version = '1.0.0-SNAPSHOT'
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -17,6 +23,12 @@ repositories {
 }
 
 dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.7.2'
 
