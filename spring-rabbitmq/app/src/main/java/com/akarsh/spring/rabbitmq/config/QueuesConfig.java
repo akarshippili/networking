@@ -3,6 +3,7 @@ package com.akarsh.spring.rabbitmq.config;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,22 +12,31 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class QueuesConfig {
 
+    @Value("${rabbitmq.myQueue}")
+    private String queueName;
+
+    @Value("${rabbitmq.myExchange}")
+    private String exchangeName;
+
+    @Value("${rabbitmq.myRoutingKey}")
+    private String routingKey;
+
     @Autowired
     private RabbitAdmin admin;
 
     @Bean
     public Queue queue(){
-        return new Queue("myQueue");
+        return new Queue(queueName);
     }
 
     @Bean
     public DirectExchange exchange(){
-        return new DirectExchange("myExchange");
+        return new DirectExchange(exchangeName);
     }
 
     @Bean
     public Binding binding(Queue queue, DirectExchange exchange){
-        return BindingBuilder.bind(queue).to(exchange).with("myRoutingKey");
+        return BindingBuilder.bind(queue).to(exchange).with(routingKey);
     }
 
     @PostConstruct
