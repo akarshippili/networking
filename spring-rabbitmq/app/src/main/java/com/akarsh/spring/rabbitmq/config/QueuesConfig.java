@@ -12,13 +12,13 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class QueuesConfig {
 
-    @Value("${rabbitmq.myQueue}")
+    @Value("${rabbitmq.queue.myQueue}")
     private String queueName;
 
-    @Value("${rabbitmq.myExchange}")
+    @Value("${rabbitmq.queue.myExchange}")
     private String exchangeName;
 
-    @Value("${rabbitmq.myRoutingKey}")
+    @Value("${rabbitmq.queue.myRoutingKey}")
     private String routingKey;
 
     @Autowired

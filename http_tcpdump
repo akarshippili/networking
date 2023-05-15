@@ -1,0 +1,35 @@
+02:51:36.355631 IP6 (flowlabel 0xb50d8, hlim 64, next-header TCP (6) payload length: 40) 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39938 > 2606:2800:220:1:248:1893:25c8:1946.80: Flags [S], cksum 0x9f7a (incorrect -> 0x30bb), seq 3507267695, win 64800, options [mss 1440,sackOK,TS val 1113793210 ecr 0,nop,wscale 7], length 0
+
+02:51:36.355691 IP6 (flowlabel 0xce170, hlim 64, next-header TCP (6) payload length: 40) 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39944 > 2606:2800:220:1:248:1893:25c8:1946.80: Flags [S], cksum 0x9f7a (incorrect -> 0x9ff7), seq 1313192948, win 64800, options [mss 1440,sackOK,TS val 1113793210 ecr 0,nop,wscale 7], length 0
+02:51:36.573234 IP6 (flowlabel 0x40128, hlim 49, next-header TCP (6) payload length: 40) 2606:2800:220:1:248:1893:25c8:1946.80 > 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39938: Flags [S.], cksum 0x7675 (correct), seq 2653625013, ack 3507267696, win 65535, options [mss 1220,sackOK,TS val 3625789233 ecr 1113793210,nop,wscale 9], length 0
+02:51:36.573329 IP6 (flowlabel 0xb50d8, hlim 64, next-header TCP (6) payload length: 32) 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39938 > 2606:2800:220:1:248:1893:25c8:1946.80: Flags [.], cksum 0x9f72 (incorrect -> 0xa17f), ack 1, win 507, options [nop,nop,TS val 1113793427 ecr 3625789233], length 0
+02:51:36.573748 IP6 (flowlabel 0xb50d8, hlim 64, next-header TCP (6) payload length: 448) 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39938 > 2606:2800:220:1:248:1893:25c8:1946.80: Flags [P.], cksum 0xa112 (incorrect -> 0x062d), seq 1:417, ack 1, win 507, options [nop,nop,TS val 1113793428 ecr 3625789233], length 416: HTTP, length: 416
+        GET / HTTP/1.1
+        Host: example.com
+        Connection: keep-alive
+        Upgrade-Insecure-Requests: 1
+        User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36
+        Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+        Accept-Encoding: gzip, deflate
+        Accept-Language: en-US,en;q=0.9
+
+02:51:36.582433 IP6 (flowlabel 0x8d431, hlim 49, next-header TCP (6) payload length: 40) 2606:2800:220:1:248:1893:25c8:1946.80 > 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39944: Flags [S.], cksum 0x3f7f (correct), seq 3807991503, ack 1313192949, win 65535, options [mss 1220,sackOK,TS val 1629537144 ecr 1113793210,nop,wscale 9], length 0
+02:51:36.582528 IP6 (flowlabel 0xce170, hlim 64, next-header TCP (6) payload length: 32) 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39944 > 2606:2800:220:1:248:1893:25c8:1946.80: Flags [.], cksum 0x9f72 (incorrect -> 0x6a7f), ack 1, win 507, options [nop,nop,TS val 1113793437 ecr 1629537144], length 0
+02:51:36.841564 IP6 (flowlabel 0x40128, hlim 49, next-header TCP (6) payload length: 32) 2606:2800:220:1:248:1893:25c8:1946.80 > 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39938: Flags [.], cksum 0xa07d (correct), ack 417, win 131, options [nop,nop,TS val 3625789450 ecr 1113793428], length 0
+02:51:36.841564 IP6 (flowlabel 0x40128, hlim 49, next-header TCP (6) payload length: 1054) 2606:2800:220:1:248:1893:25c8:1946.80 > 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39938: Flags [P.], cksum 0x6014 (correct), seq 1:1023, ack 417, win 131, options [nop,nop,TS val 3625789450 ecr 1113793428], length 1022: HTTP, length: 1022
+        HTTP/1.1 200 OK
+        Content-Encoding: gzip
+        Accept-Ranges: bytes
+        Age: 459810
+        Cache-Control: max-age=604800
+        Content-Type: text/html; charset=UTF-8
+        Date: Tue, 17 Jan 2023 21:21:36 GMT
+        Etag: "3147526947"
+        Expires: Tue, 24 Jan 2023 21:21:36 GMT
+        Last-Modified: Thu, 17 Oct 2019 07:18:26 GMT
+        Server: ECS (oxr/8313)
+        Vary: Accept-Encoding
+        X-Cache: HIT
+        Content-Length: 648
+
+02:51:36.841659 IP6 (flowlabel 0xb50d8, hlim 64, next-header TCP (6) payload length: 32) 2406:7400:63:56ad:d1a0:38d5:daa7:2107.39938 > 2606:2800:220:1:248:1893:25c8:1946.80: Flags [.], cksum 0x9f72 (incorrect -> 0x9a02), ack 1023, win 500, options [nop,nop,TS val 1113793696 ecr 3625789450], length 0

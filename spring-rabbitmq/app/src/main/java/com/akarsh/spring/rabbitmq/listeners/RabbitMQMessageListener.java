@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class RabbitMQMessageListener {
-    @RabbitListener(queues = "${rabbitmq.myQueue}")
+    @RabbitListener(queues = "${rabbitmq.queue.myQueue}")
     public void processMessage(String message) {
         log.info("Received RabbitMQ message {}", message);
     }
