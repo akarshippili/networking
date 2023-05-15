@@ -1,4 +1,4 @@
-logging.level.root: TRACE
+logging.level.root: INFO
 
 spring.main.allow-circular-references:  true
 
@@ -12,7 +12,7 @@ rabbitmq:
   auto-created-queue:
     queue-name: auto-create-queue
     exchange-name: auto-create-exchange
-    binding-key: auto-create-binding-key
+    binding-key: auto-create.binding.key
 
   queue:
     myQueue: myQueue
