@@ -3,15 +3,22 @@ package router
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"net/http"
 
 	"github.com/akarshippili/networking/http-server/fs"
 )
 
 func renderTemplate(w http.ResponseWriter, tmpl string, page *fs.Page) {
-	t, _ := template.ParseFiles(tmpl + ".html")
-	t.Execute(w, page)
+	t, err := template.ParseFiles(tmpl + ".html")
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	err = t.Execute(w, page)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 func ViewHandler(w http.ResponseWriter, r *http.Request) {
@@ -51,9 +58,9 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
 		Title: fileName,
 		Body:  []byte(body),
 	}
+
 	if err := page.Save(); err != nil {
-		log.Fatal(err)
-		fmt.Fprintf(w, "Bad Request")
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 
 	http.Redirect(w, r, "/view/"+fileName, http.StatusFound)
