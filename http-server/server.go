@@ -9,6 +9,8 @@ import (
 
 func main() {
 	http.HandleFunc("/view/", router.ViewHandler)
+	http.HandleFunc("/edit/", router.EditHandler)
+	http.HandleFunc("/save/", router.SaveHandler)
 	http.HandleFunc("/", router.RootHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
