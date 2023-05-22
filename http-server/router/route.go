@@ -9,6 +9,11 @@ import (
 	"github.com/akarshippili/networking/http-server/fs"
 )
 
+func renderTemplate(w http.ResponseWriter, tmpl string, page *fs.Page) {
+	t, _ := template.ParseFiles(tmpl + ".html")
+	t.Execute(w, page)
+}
+
 func ViewHandler(w http.ResponseWriter, r *http.Request) {
 	path := r.URL.Path
 	fileName := path[len("/view/"):]
@@ -16,11 +21,11 @@ func ViewHandler(w http.ResponseWriter, r *http.Request) {
 
 	page, err := fs.Load(fileName)
 	if err != nil {
-		page = &fs.ErrorPage
+		http.Redirect(w, r, "/edit/"+fileName, http.StatusFound)
+		return
 	}
 
-	t, _ := template.ParseFiles("view.html")
-	t.Execute(w, page)
+	renderTemplate(w, "view", page)
 }
 
 func EditHandler(w http.ResponseWriter, r *http.Request) {
@@ -35,8 +40,7 @@ func EditHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	t, _ := template.ParseFiles("edit.html")
-	t.Execute(w, page)
+	renderTemplate(w, "edit", page)
 }
 
 func SaveHandler(w http.ResponseWriter, r *http.Request) {
@@ -52,7 +56,7 @@ func SaveHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Bad Request")
 	}
 
-	fmt.Fprintf(w, "201 Created")
+	http.Redirect(w, r, "/view/"+fileName, http.StatusFound)
 }
 
 func RootHandler(w http.ResponseWriter, r *http.Request) {
