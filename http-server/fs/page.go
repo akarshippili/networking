@@ -7,6 +7,11 @@ type Page struct {
 	Body  []byte // byte slice
 }
 
+var ErrorPage = Page{
+	Title: "ERROR",
+	Body:  []byte("check if the url entered is right"),
+}
+
 func (page *Page) Save() error {
 	// save data from page.Body to [page.Title + ".txt"]
 	filepath := page.Title + ".txt"
