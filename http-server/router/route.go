@@ -2,6 +2,7 @@ package router
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"net/http"
 
@@ -18,7 +19,8 @@ func ViewHandler(w http.ResponseWriter, r *http.Request) {
 		page = &fs.ErrorPage
 	}
 
-	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", page.Title, page.Body)
+	t, _ := template.ParseFiles("view.html")
+	t.Execute(w, page)
 }
 
 func EditHandler(w http.ResponseWriter, r *http.Request) {
@@ -33,13 +35,8 @@ func EditHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	fmt.Fprintf(w, "<Title>%s.txt</Title>"+
-		"<h1>Editing %s</h1>"+
-		"<form action=\"/save/%s\" method=\"POST\">"+
-		"<textarea name=\"body\">%s</textarea><br>"+
-		"<input type=\"submit\" value=\"Save\">"+
-		"</form>",
-		page.Title, page.Title, page.Title, page.Body)
+	t, _ := template.ParseFiles("edit.html")
+	t.Execute(w, page)
 }
 
 func SaveHandler(w http.ResponseWriter, r *http.Request) {
