@@ -8,14 +8,10 @@ import (
 	"github.com/akarshippili/networking/http-server/fs"
 )
 
-func renderTemplate(w http.ResponseWriter, tmpl string, page *fs.Page) {
-	t, err := template.ParseFiles(tmpl + ".html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+var templates = template.Must(template.ParseFiles("./templates/view.html", "./templates/edit.html"))
 
-	err = t.Execute(w, page)
+func renderTemplate(w http.ResponseWriter, tmpl string, page *fs.Page) {
+	err := templates.ExecuteTemplate(w, tmpl+".html", page)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
