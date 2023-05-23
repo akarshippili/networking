@@ -1,0 +1,5 @@
+learned 
+
+1. saving and loading data from fs.
+2. net/http basics.
+3. html/template.

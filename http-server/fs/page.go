@@ -14,12 +14,12 @@ var ErrorPage = Page{
 
 func (page *Page) Save() error {
 	// save data from page.Body to [page.Title + ".txt"]
-	filepath := page.Title + ".txt"
+	filepath := "./data/" + page.Title + ".txt"
 	return os.WriteFile(filepath, page.Body, 0600)
 }
 
 func Load(title string) (page *Page, err error) {
-	filepath := title + ".txt"
+	filepath := "./data/" + title + ".txt"
 	byteArray, err := os.ReadFile(filepath)
 
 	if err != nil {
