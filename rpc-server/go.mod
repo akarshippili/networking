@@ -1,3 +1,3 @@
-module github.com/akarshippili/nwtworking/rpc-server
+module github.com/akarshippili/networking/rpc-server
 
 go 1.19

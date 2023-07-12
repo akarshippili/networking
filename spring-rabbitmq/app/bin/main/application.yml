@@ -1,0 +1,20 @@
+logging.level.root: INFO
+
+spring.main.allow-circular-references:  true
+
+
+rabbitmq:
+  username: guest
+  password: guest
+  host: 127.0.0.1
+  port: 5672
+
+  auto-created-queue:
+    queue-name: auto-create-queue
+    exchange-name: auto-create-exchange
+    binding-key: auto-create.binding.key
+
+  queue:
+    myQueue: myQueue
+    myExchange: myExchange
+    myRoutingKey: myRoutingKey
