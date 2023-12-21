@@ -7,7 +7,7 @@ import (
 	"log"
 	"net"
 
-	"github.com/akarshippili/networking/gRpc/helloworld"
+	"github.com/akarshippili/networking/gRpc/greet-example/helloworld"
 	"google.golang.org/grpc"
 )
 
@@ -19,7 +19,7 @@ func (server *Server) SayHello(ctx context.Context, request *helloworld.HelloReq
 	log.Printf("Received %v", request.GetName())
 
 	return &helloworld.HelloReply{
-		Message: "Yo yo yo. 148-3 to the 3 to the 6 to the 9, representing the ABQ, what up, biatch?!",
+		Message: "Yo yo yo. 148-3 to the 3 to the 6 to the 9, representing the ABQ, what up, biatch !!!",
 	}, nil
 }
 

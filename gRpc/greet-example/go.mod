@@ -1,4 +1,4 @@
-module github.com/akarshippili/networking/gRpc
+module github.com/akarshippili/networking/gRpc/greet-example
 
 go 1.19
 
