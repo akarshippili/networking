@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"flag"
 	"fmt"
 	"log"
@@ -19,6 +20,21 @@ type Server struct {
 
 func (server *Server) Add(ctx context.Context, req *math_server.Request) (*math_server.Response, error) {
 	return &math_server.Response{Result: req.Var1 + req.Var2}, nil
+}
+
+func (server *Server) Sub(ctx context.Context, req *math_server.Request) (*math_server.Response, error) {
+	return &math_server.Response{Result: req.Var1 - req.Var2}, nil
+}
+
+func (server *Server) Mul(ctx context.Context, req *math_server.Request) (*math_server.Response, error) {
+	return &math_server.Response{Result: req.Var1 * req.Var2}, nil
+}
+
+func (server *Server) Div(ctx context.Context, req *math_server.Request) (*math_server.Response, error) {
+	if req.Var2 == 0 {
+		return nil, errors.New("arithmetic exception: divide by zero")
+	}
+	return &math_server.Response{Result: req.Var1 / req.Var2}, nil
 }
 
 func main() {

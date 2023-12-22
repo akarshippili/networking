@@ -7,6 +7,9 @@ package mathserver;
 // The math service definition.
 service Math {
   rpc Add (Request) returns (Response) {}
+  rpc Sub (Request) returns (Response) {}
+  rpc Mul (Request) returns (Response) {}
+  rpc Div (Request) returns (Response) {}
 }
 
 message Request {

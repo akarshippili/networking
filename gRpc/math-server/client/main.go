@@ -33,6 +33,23 @@ func main() {
 	if err != nil {
 		log.Fatalf("error while making a reqest, cause: %v", err)
 	}
+	log.Printf("Add response: %d", res.GetResult())
 
-	log.Printf("response: %d", res.GetResult())
+	res, err = client.Sub(ctx, &math_server.Request{Var1: *var1, Var2: *var2})
+	if err != nil {
+		log.Printf("error while making a reqest, cause: %v\n", err)
+	}
+	log.Printf("Sub response: %d", res.GetResult())
+
+	res, err = client.Mul(ctx, &math_server.Request{Var1: *var1, Var2: *var2})
+	if err != nil {
+		log.Printf("error while making a reqest, cause: %v\n", err)
+	}
+	log.Printf("Mul response: %d", res.GetResult())
+
+	res, err = client.Div(ctx, &math_server.Request{Var1: *var1, Var2: *var2})
+	if err != nil {
+		log.Printf("error while making a reqest, cause: \n\t %v\n", err)
+	}
+	log.Printf("Div response: %d", res.GetResult())
 }
