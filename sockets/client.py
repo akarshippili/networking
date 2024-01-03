@@ -11,8 +11,6 @@ while True:
     msg = msgBytes.decode("utf-8")
     
     if(len(msg) <= 0): break
-
-    print(msg)
     final_msg += msg
 
 print(final_msg)

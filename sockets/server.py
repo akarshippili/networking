@@ -10,5 +10,5 @@ s.listen(5)
 while True:
     clientSocket, clientAddress = s.accept()
     print(f"connection established from {clientAddress}")
-    clientSocket.send(bytes("Hey!!!, welcomr to the server!!!", 'utf-8'))
+    clientSocket.send(bytes("Hey!!!, welcome to the server!!!", 'utf-8'))
     clientSocket.close()
