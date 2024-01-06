@@ -54,6 +54,9 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
                 new_user = recive_msg(client_socket)
                 print(f"[thread-id: {threading.get_native_id()}] {new_user['msg']} successfully established connection from {client_address}")              
                 users[client_socket] = new_user["msg"]
+                # for sock in sockets:
+                #     if(sock == rsock or sock == server_socket): continue
+                #     sock.send(bytes(socket_msg(f"{new_user['msg']} joined the chat."), "utf-8"))
                 continue
             
             # existing connections
