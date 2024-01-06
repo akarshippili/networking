@@ -1,7 +1,6 @@
 import socket
 import sys
-import threading
-import time
+import select
 
 header_length = 10
 buffer_size = 16
@@ -38,37 +37,36 @@ def recive_msg(sock):
             return data
 
 def handel_recv(sock):
-    while True:
-        time.sleep(2)
-        data = recive_msg(sock)
-        print(data['msg'])
+    data = recive_msg(sock)
+    print(data['msg'])
 
-def handel_send(sock):
-    while True:
-        msg = socket_msg(input(f"> "))
-        
-        if(msg == empty_msg): 
-            print("entered a empty message")
-            sock.close()
-            sys.exit(0)
-        
-        print(sock)
-        sock.send(msg)
-
+def handel_send(sock, msg):    
+    if(msg == empty_msg): 
+        print("entered a empty message")
+        sock.close()
+        sys.exit(0)
+    
+    sock.send(msg)
 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     try:
-        s.setblocking(True)
         s.connect((socket.gethostname(), 4200))
         s.send(socket_msg(user_name))
-        recv_thread = threading.Thread(target=handel_recv, args=(s,))
-        send_thread = threading.Thread(target=handel_send, args=(s,))
+        inputs, outputs = [s, sys.stdin], []
         
-        print(s)        
-        send_thread.start()
-        recv_thread.start()
+        while True:
+            readable, writeable, exceptional = select.select(inputs, outputs, inputs)
             
+            for rsock in readable:
+                if(rsock == s): handel_recv(s)
+                elif(rsock == sys.stdin): handel_send(s, socket_msg(sys.stdin.readline().strip()))
+                else: print(rsock)
+
+            for exsock in exceptional:
+                print(exsock)
+                inputs.remove(exsock)
+                
     except Exception as ex:
         print(ex)
     finally:
