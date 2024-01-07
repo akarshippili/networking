@@ -66,7 +66,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
             data = recive_msg(rsock)
             
             if(not data or len(data["msg"]) == 0):
-                print(f"[thread-id: {threading.get_native_id()}] {user} closed connection.")              
+                print(f"[thread-id: {threading.get_native_id()}] {user} closed connection.")    
+                
+                for sock in sockets:
+                    if(sock == rsock or sock == server_socket): continue
+                    sock.send(bytes(socket_msg(f"{user} left the chat."), "utf-8"))
+                              
                 sockets.remove(rsock)
                 rsock.close()
                 del users[rsock]
