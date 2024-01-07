@@ -51,7 +51,8 @@ def handel_send(sock, msg):
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     try:
-        s.connect((socket.gethostname(), 4200))
+        args = sys.argv
+        s.connect((args[1], int(args[-1])))
         s.send(socket_msg(user_name))
         inputs, outputs = [s, sys.stdin], []
         

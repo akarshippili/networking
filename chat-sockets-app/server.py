@@ -1,6 +1,7 @@
 import socket
 import select
 import threading
+import sys
 
 header_length = 10
 buffer_size = 16
@@ -35,10 +36,11 @@ def recive_msg(sock):
             data["msg"] = msg
             return data
 
-
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
-    server_socket.bind((socket.gethostname(), 4200))
+    args = sys.argv
+    server_socket.bind(("0.0.0.0", int(args[-1])))
     server_socket.listen(5)
+    print(f"Starts serving at {socket.gethostname()}:{args[-1]}.")
     
     sockets = [server_socket]
     while True:
